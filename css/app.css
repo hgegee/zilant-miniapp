@@ -1,0 +1,671 @@
+:root {
+  --bg: var(--tg-theme-bg-color, #141414);
+  --bg-secondary: var(--tg-theme-secondary-bg-color, #1c1c1c);
+  --text: var(--tg-theme-text-color, #ffffff);
+  --hint: var(--tg-theme-hint-color, #a3a3a3);
+  --link: var(--tg-theme-link-color, #c9a227);
+  --button: var(--tg-theme-button-color, #c9a227);
+  --button-text: var(--tg-theme-button-text-color, #141414);
+  --border: rgba(255, 255, 255, 0.08);
+  --card: #1a1a1a;
+  --primary: #c9a227;
+  --primary-dim: rgba(201, 162, 39, 0.15);
+  --radius: 12px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.45;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  padding-top: var(--safe-top);
+  padding-bottom: calc(72px + var(--safe-bottom));
+}
+
+/* ─── Header ─── */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-header .logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 12px;
+  color: var(--button-text);
+  flex-shrink: 0;
+}
+
+.app-header .title {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+}
+
+.app-header .sub {
+  font-size: 11px;
+  color: var(--hint);
+}
+
+/* ─── Nav tabs ─── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  position: sticky;
+  top: 57px;
+  z-index: 30;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--hint);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tab.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--button-text);
+}
+
+/* ─── Sections ─── */
+.section {
+  display: none;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
+}
+
+.section.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.section-desc {
+  color: var(--hint);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+/* ─── Filters ─── */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.chip {
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--button-text);
+}
+
+.chip .count {
+  opacity: 0.55;
+  margin-left: 4px;
+}
+
+/* ─── Car cards ─── */
+.cars-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.car-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.car-card:active {
+  border-color: var(--primary);
+}
+
+.car-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.car-brand {
+  font-size: 12px;
+  color: var(--hint);
+}
+
+.car-model {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 2px;
+}
+
+.car-tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--primary);
+  color: var(--button-text);
+  padding: 3px 7px;
+  border-radius: 4px;
+}
+
+.car-specs {
+  font-size: 13px;
+  color: var(--hint);
+  margin-top: 6px;
+}
+
+.car-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.car-price {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.car-price span {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--hint);
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--primary) 50%, transparent);
+  background: transparent;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-sm:active {
+  background: var(--primary);
+  color: var(--button-text);
+}
+
+/* ─── Booking form ─── */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-label {
+  display: block;
+  font-size: 12px;
+  color: var(--hint);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: var(--primary);
+}
+
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a3a3a3' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.check-box {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.check-box.on {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.check-box.on::after {
+  content: "✓";
+  color: var(--button-text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.summary {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin: 16px 0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 4px 0;
+}
+
+.summary-row.total {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.summary-row.total .val {
+  color: var(--primary);
+}
+
+.error {
+  color: #e05555;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ─── Tariffs ─── */
+.plan-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-card.highlight {
+  border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+}
+
+.plan-card.highlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary);
+}
+
+.plan-term {
+  font-size: 13px;
+  color: var(--hint);
+}
+
+.plan-discount {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 6px 0;
+}
+
+.plan-card.highlight .plan-discount {
+  color: var(--primary);
+}
+
+.plan-note {
+  font-size: 13px;
+  color: var(--hint);
+}
+
+/* ─── Conditions / FAQ / Advantages ─── */
+.cond-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+}
+
+.cond-tab {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: var(--card);
+  color: var(--hint);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cond-tab.active {
+  background: var(--primary);
+  color: var(--button-text);
+}
+
+.cond-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 8px;
+}
+
+.cond-item h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.cond-item p {
+  font-size: 13px;
+  color: var(--hint);
+}
+
+.adv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  text-align: center;
+}
+
+.stat-val {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.03em;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--hint);
+  margin-top: 4px;
+}
+
+.adv-item {
+  border-top: 1px solid var(--border);
+  padding: 14px 0;
+}
+
+.adv-item h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.adv-item p {
+  font-size: 13px;
+  color: var(--hint);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-q {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.faq-q::after {
+  content: "+";
+  font-size: 20px;
+  color: var(--hint);
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-q::after {
+  content: "−";
+  color: var(--primary);
+}
+
+.faq-a {
+  display: none;
+  font-size: 14px;
+  color: var(--hint);
+  padding-bottom: 16px;
+  max-width: 95%;
+}
+
+.faq-item.open .faq-a {
+  display: block;
+}
+
+/* ─── Contacts ─── */
+.contact-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 10px;
+}
+
+.contact-label {
+  font-size: 12px;
+  color: var(--hint);
+  margin-bottom: 4px;
+}
+
+.contact-val {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.contact-val a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* ─── Bottom bar (fallback if no MainButton) ─── */
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px calc(12px + var(--safe-bottom));
+  background: color-mix(in srgb, var(--bg) 95%, transparent);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  z-index: 50;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 10px;
+  background: var(--primary);
+  color: var(--button-text);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+}
+
+.btn-primary:active:not(:disabled) {
+  opacity: 0.9;
+}
+
+.empty {
+  text-align: center;
+  color: var(--hint);
+  padding: 40px 20px;
+}
+
+/* Success overlay */
+.success-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--bg);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+}
+
+.success-screen.show {
+  display: flex;
+}
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--button-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.success-screen h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.success-screen p {
+  color: var(--hint);
+  font-size: 14px;
+  max-width: 280px;
+  margin-bottom: 24px;
+}
